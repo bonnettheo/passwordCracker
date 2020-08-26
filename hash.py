@@ -2,7 +2,11 @@ import hashlib
 
 passw = input("password : ")
 
-encr_wrd = passw.encode("utf-8")
-digest = hashlib.md5(encr_wrd.strip()).hexdigest()
+print(hashlib.algorithms_guaranteed)
+algo = input("hashing function: ")
 
-print("hash: "+digest)
+h = hashlib.new(algo)
+h.update(passw.encode("utf-8"))
+digest = h.hexdigest()
+
+print("hash: "+ digest)
