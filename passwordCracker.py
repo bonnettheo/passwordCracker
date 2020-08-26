@@ -10,9 +10,16 @@ except:
 	print("file not found")
 	quit()
 
+print(hashlib.algorithms_guaranteed)
+algo = input("hashing function: ")
+
 for word in pass_file:
+	word = word.strip()
 	encr_wrd = word.encode("utf-8")
-	digest = hashlib.md5(encr_wrd.strip()).hexdigest()
+	h = hashlib.new(algo)
+	h.update(encr_wrd)
+	digest = h.hexdigest()
+	print(digest)
 	
 	if digest == pass_hash:
 		print("password found")
